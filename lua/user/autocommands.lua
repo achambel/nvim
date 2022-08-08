@@ -33,4 +33,10 @@ vim.cmd [[
    autocmd!
    autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
   augroup end
+
+  augroup _remember_folds
+    autocmd!
+    autocmd BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested silent! mkview!
+    autocmd BufWinEnter ?* silent! loadview
+  augroup END
 ]]
