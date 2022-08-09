@@ -93,7 +93,6 @@ return packer.startup(function(use)
 
   -- Git
   use({ "lewis6991/gitsigns.nvim", commit = "c18e016864c92ecf9775abea1baaa161c28082c3" })
-  use({ "kdheepak/lazygit.nvim", commit = "9c73fd69a4c1cb3b3fc35b741ac968e331642600" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
