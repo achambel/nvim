@@ -39,8 +39,15 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
+-- swap colon and semicolon
+keymap("n", ";", ":", { noremap = true })
+keymap("n", ":", ";", { noremap = true })
+
+keymap("v", ";", ":", { noremap = true })
+keymap("v", ":", ";", { noremap = true })
+
 -- Insert --
--- Press jk fast to exit insert mode 
+-- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
@@ -67,3 +74,12 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+-- Remove newbie crutches for arrow keys
+local modes = { "i", "n", "v", "x" }
+local commands = { "<Up>", "<Right>", "<Down>", "<Left>" }
+
+for _, mode in ipairs(modes) do
+  for _, command in ipairs(commands) do
+    keymap(mode, command, "<Nop>", { silent = true })
+  end
+end

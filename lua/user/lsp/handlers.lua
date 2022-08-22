@@ -81,7 +81,7 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  local servers = { "html", "tsserver" }
+  local servers = { "html", "tsserver", "elixirls" }
 
   for _, server in pairs(servers) do
 

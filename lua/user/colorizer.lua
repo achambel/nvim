@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-colorizer.setup(nil, {
+colorizer.setup({ "css" }, {
   RGB       = true; -- #RGB hex codes
   RRGGBB    = true; -- #RRGGBB hex codes
   names     = true; -- "Name" codes like Blue

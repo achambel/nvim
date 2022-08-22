@@ -14,7 +14,11 @@ null_ls.setup({
   debug = true,
   sources = {
     formatting.prettier,
+    formatting.mix,
+
     code_actions.xo,
-    diagnostics.xo
+
+    diagnostics.xo,
+    diagnostics.credo
   },
 })
