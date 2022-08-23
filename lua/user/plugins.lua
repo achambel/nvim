@@ -61,6 +61,7 @@ return packer.startup(function(use)
   use({ "folke/trouble.nvim", commit = "da61737d860ddc12f78e638152834487eabf0ee5" })
   use({ "karb94/neoscroll.nvim", commit = "54c5c419f6ee2b35557b3a6a7d631724234ba97a" })
   use({ "tpope/vim-surround", commit = "bf3480dc9ae7bea34c78fbba4c65b4548b5b1fea" })
+  use({ "tpope/vim-repeat", commit = "24afe922e6a05891756ecf331f39a1f6743d3d5a" })
 
   -- Colorschemes
   use({ "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" })
