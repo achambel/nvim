@@ -5,6 +5,13 @@ vim.cmd [[
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
+
+    " automatically leave insert mode after 'updatetime' milliseconds of inaction
+    autocmd CursorHoldI * stopinsert 
+
+    " set 'updatetime' to 15 seconds when in insert mode
+    au InsertEnter * let updaterestore=&updatetime | set updatetime=15000
+    au InsertLeave * let &updatetime=updaterestore 
   augroup end
 
   augroup _git
