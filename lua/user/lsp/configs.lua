@@ -1,11 +1,11 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local status_ok, lsp_installer = pcall(require, "mason-lspconfig")
 if not status_ok then
   return
 end
 
 local lspconfig = require("lspconfig")
 
-local servers = { "html", "emmet_ls", "cssls", "tsserver", "jsonls", "sumneko_lua", "elixirls", "tailwindcss" }
+local servers = { "html", "emmet_ls", "cssls", "tailwindcss", "tsserver", "jsonls", "lua_ls", "elixirls" }
 
 lsp_installer.setup({
   ensure_installed = servers,

@@ -76,3 +76,9 @@ for _, mode in ipairs(modes) do
     keymap(mode, command, "<Nop>", { silent = true })
   end
 end
+
+-- Telescope
+keymap("n", "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", opts)
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
