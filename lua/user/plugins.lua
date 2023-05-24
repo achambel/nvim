@@ -73,7 +73,9 @@ return packer.startup(function(use)
   use({ "folke/tokyonight.nvim", commit = "6972aade12a9c6ecbbd163739d7617c21fc6bc4b" })
 
   -- Color highlighter
-  use({ "norcalli/nvim-colorizer.lua", commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" })
+  --[[ use({ "norcalli/nvim-colorizer.lua", commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" }) ]]
+  use({ "NvChad/nvim-colorizer.lua", commit = "dde3084106a70b9a79d48f426f6d6fec6fd203f7" })
+  use({ "roobert/tailwindcss-colorizer-cmp.nvim", commit = "65565c62963579897d28390dbd1ba8fb15ba545f" })
 
   -- cmp plugins
   use({ "hrsh7th/nvim-cmp", commit = "3ac8d6cd29c74ff482d8ea47d45e5081bfc3f5ad" })         -- The completion plugin
