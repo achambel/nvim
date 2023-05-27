@@ -1,3 +1,14 @@
 return {
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'eelixir', 'heex' },
+  filetypes = {
+    'html',
+    'typescriptreact',
+    'javascriptreact',
+    'css',
+    'sass',
+    'scss',
+    'less',
+    'elixir',
+    'eelixir',
+    'heex'
+  },
 }
