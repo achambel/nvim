@@ -14,7 +14,7 @@ null_ls.setup({
   debug = false,
   sources = {
     formatting.prettier,
-    formatting.mix,
-    diagnostics.credo
-  },
+    --[[ diagnostics.eslint_d, ]]
+    --[[ code_actions.eslint_d ]]
+  }
 })
