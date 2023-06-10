@@ -4,11 +4,13 @@ if not status_ok then
 end
 
 local actions = require "telescope.actions"
+local trouble = require "trouble.providers.telescope"
+local icons = require("user.icons").telescope
 
 telescope.setup {
   defaults = {
-    prompt_prefix = " ",
-    selection_caret = " ",
+    prompt_prefix = icons.prompt_prefix,
+    selection_caret = icons.selection_caret,
     path_display = { "smart" },
     layout_strategy = 'vertical',
     layout_config = { width = 0.5 },
@@ -29,7 +31,7 @@ telescope.setup {
         ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
+        ["<C-t>"] = trouble.open_with_trouble,
 
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
@@ -50,7 +52,7 @@ telescope.setup {
         ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
+        ["<C-t>"] = trouble.open_with_trouble,
 
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
@@ -98,9 +100,17 @@ telescope.setup {
         -- even more opts
       }
     },
-  }
+    fzf = {
+      fuzzy = true,                   -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    }
+  },
 }
 
 -- To get ui-select loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("fzf")

@@ -3,25 +3,55 @@ if not status_ok then
   return
 end
 
+local icons = require("user.icons")
+
+local lsp = {
+  -- Lsp server name .
+  function()
+    local message = 'No Active LSP'
+    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+      return message
+    end
+
+    local client_names = {}
+
+    for i, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        client_names[i] = client.name
+      end
+    end
+
+    local items = table.maxn(client_names)
+
+    if items == 0 then
+      return message
+    elseif items == 1 then
+      return table.concat(client_names, "")
+    else
+      return string.format("[%s]", table.concat(client_names, ", "))
+    end
+  end,
+
+  icon = icons.lsp.server,
+  color = { gui = 'bold' }
+}
+
+local icon = {
+  "filetype",
+  icon_only = true
+}
+
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
 end
 
-local diagnostics = {
-  "diagnostics",
-  sources = { "nvim_diagnostic" },
-  sections = { "error", "warn" },
-  symbols = { error = " ", warn = " " },
-  colored = false,
-  update_in_insert = false,
-  always_visible = true,
-  padding = 1
-}
-
 local diff = {
   "diff",
   colored = true,
-  symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+  symbols = icons.git.diff,
   cond = hide_in_width
 }
 
@@ -32,63 +62,62 @@ local mode = {
   end,
 }
 
-local filetype = {
-  "filetype",
-  icons_enabled = true,
-  icon = nil,
-}
-
 local branch = {
   "branch",
   icons_enabled = true,
-  icon = "",
+  icon = icons.git.branch
 }
 
-local location = {
-  "location",
-  padding = 1,
+local buffers = {
+  function()
+    local total = 0
+    for b = 1, vim.fn.bufnr('$') do
+      if vim.fn.buflisted(b) ~= 0 and vim.api.nvim_buf_get_option(b, 'buftype') ~= 'quickfix' then
+        total = total + 1
+      end
+    end
+
+    return total > 1 and total or ""
+  end,
+  icon = icons.buffer.files
 }
-
--- cool function for progress
-local progress = function()
-  local current_line = vim.fn.line(".")
-  local total_lines = vim.fn.line("$")
-  local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-  local line_ratio = current_line / total_lines
-  local index = math.ceil(line_ratio * #chars)
-  return chars[index]
-end
-
-local spaces = function()
-  return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-end
 
 lualine.setup({
   options = {
     icons_enabled = true,
-    theme = "tokyonight",
+    theme = "auto",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { branch, diagnostics },
+    lualine_a = { branch },
     lualine_b = { mode },
-    lualine_c = {},
-    -- lualine_x = { "encoding", "fileformat", "filetype" },
-    lualine_x = { diff, "encoding", filetype },
-    -- lualine_y = { location },
-    -- lualine_z = { progress },
+    lualine_c = { "diagnostics" },
+    lualine_x = { diff, lsp },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filename" },
+    lualine_c = {},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {},
   },
   tabline = {},
+  winbar = {
+    lualine_a = { buffers },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = { icon },
+    lualine_y = { "filename" },
+    lualine_z = {},
+  },
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_x = { icon },
+    lualine_y = { "filename" },
+  },
   extensions = {},
 })

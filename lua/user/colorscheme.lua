@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 colorscheme.setup({
-  style = 'storm'
+  style = 'moon'
 })
 
 vim.cmd.colorscheme("tokyonight")

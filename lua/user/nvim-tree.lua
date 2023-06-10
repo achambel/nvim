@@ -4,6 +4,12 @@ local function on_attach(bufnr)
   local function opts(desc)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
+
+  -- Automatically open file upon creation
+  api.events.subscribe(api.events.Event.FileCreated, function(file)
+    vim.cmd('edit ' .. file.fname)
+  end)
+
   -- Default mappings. Feel free to modify or remove as you wish.
   --
   -- BEGIN_DEFAULT_ON_ATTACH
@@ -77,12 +83,9 @@ if not status_ok then
   return
 end
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-  return
-end
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
+local git = require("user.icons").git
+local diagnostic = require("user.icons").diagnostic
+local tree = require("user.icons").tree
 
 nvim_tree.setup {
   on_attach = on_attach,
@@ -92,28 +95,22 @@ nvim_tree.setup {
   },
   renderer = {
     root_folder_modifier = ":t",
+    indent_markers = {
+      enable = true,
+    },
     icons = {
       glyphs = {
-        default = "",
-        symlink = "",
-        folder = {
-          arrow_open = "",
-          arrow_closed = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open = "",
-        },
+        default = tree.file,
+        symlink = tree.symlink,
+        folder = tree.folder,
         git = {
-          unstaged = "",
-          staged = "S",
-          unmerged = "",
-          renamed = "➜",
-          untracked = "U",
-          deleted = "",
-          ignored = "◌",
+          unstaged = git.unstaged,
+          staged = git.staged,
+          unmerged = git.unmerged,
+          renamed = git.renamed,
+          untracked = git.untracked,
+          deleted = git.deleted,
+          ignored = git.ignored,
         },
       },
     }
@@ -122,10 +119,10 @@ nvim_tree.setup {
     enable = true,
     show_on_dirs = true,
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      hint = diagnostic.hint,
+      info = diagnostic.info,
+      warning = diagnostic.warn,
+      error = diagnostic.error
     },
   },
   filters = {

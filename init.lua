@@ -1,3 +1,33 @@
+-- A builtin Lua module which byte-compiles and caches Lua files (speeds up load times)
+vim.loader.enable()
+
+-- Disable some builtin vim plugins
+local disabled_built_ins = {
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "matchit",
+  "matchparen",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g["loaded_" .. plugin] = 1
+end
+
+
 -- Non-plugins configs
 require "user.options"
 require "user.keymaps"
@@ -9,10 +39,7 @@ require "user.colorscheme"
 require "user.autopairs"
 require "user.comment"
 require "user.nvim-tree"
-require "user.bufferline"
 require "user.lualine"
-require "user.indentline"
-require "user.alpha"
 require "user.whichkey"
 require "user.trouble"
 require "user.neoscroll"

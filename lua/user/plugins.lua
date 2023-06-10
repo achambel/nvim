@@ -49,11 +49,6 @@ return packer.startup(function(use)
   use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "0bf8fbc2ca8f8cdb6efbd0a9e32740d7a991e4c3" })
   use({ "nvim-tree/nvim-web-devicons", commit = "e283ab937e0197b37ec5d8013e49495193407324" })
   use({ "nvim-tree/nvim-tree.lua", commit = "b1e074d2b52d45c8327b5b43a498b3d7e6c93b97" })
-  use({
-    "akinsho/bufferline.nvim",
-    commit = "32d74d5d044f7cc89892d4781a83d55ee4ed552a",
-    requires = 'nvim-tree/nvim-web-devicons'
-  })
   use({ "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" })
   use({
     "nvim-lualine/lualine.nvim",
@@ -62,7 +57,6 @@ return packer.startup(function(use)
   })
 
   use({ "lukas-reineke/indent-blankline.nvim", commit = "86d1b71c5c26168c3a3a9ff5f69e833889a09c1d" })
-  use({ "goolord/alpha-nvim", commit = "1838ae926e8d49fe5330d1498ee8289ae2c340bc" })
   use({ "folke/which-key.nvim", commit = "e271c28118998c93a14d189af3395812a1aa646c" })
   use({ "folke/trouble.nvim", commit = "5da13b5007eb2b952834186cd640a22c765b64cf" })
   use({ "karb94/neoscroll.nvim", commit = "d7601c26c8a183fa8994ed339e70c2d841253e93" })
@@ -73,7 +67,6 @@ return packer.startup(function(use)
   use({ "folke/tokyonight.nvim", commit = "6972aade12a9c6ecbbd163739d7617c21fc6bc4b" })
 
   -- Color highlighter
-  --[[ use({ "norcalli/nvim-colorizer.lua", commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" }) ]]
   use({ "NvChad/nvim-colorizer.lua", commit = "dde3084106a70b9a79d48f426f6d6fec6fd203f7" })
   use({ "roobert/tailwindcss-colorizer-cmp.nvim", commit = "65565c62963579897d28390dbd1ba8fb15ba545f" })
 
@@ -102,11 +95,17 @@ return packer.startup(function(use)
 
 
   -- Telescope
-  use({ "nvim-telescope/telescope.nvim", commit = "057ee0f8783872635bc9bc9249a4448da9f99123" })
+  use({ "nvim-telescope/telescope.nvim", commit = "116dbea5800c908de4afa6e793f28f782621c65d" })
   use({ "nvim-telescope/telescope-ui-select.nvim", commit = "62ea5e58c7bbe191297b983a9e7e89420f581369" })
+  use({
+    'nvim-telescope/telescope-fzf-native.nvim',
+    commit = "9bc8237565ded606e6c366a71c64c0af25cd7a50",
+    run =
+    'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+  })
 
   -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter", commit = "f2778bd1a28b74adf5b1aa51aa57da85adfa3d16" })
+  use({ "nvim-treesitter/nvim-treesitter", commit = "f9d701176cb9a3e206a4c690920a8993630c3ec8" })
 
   -- Git
   use({ "lewis6991/gitsigns.nvim", commit = "c18b7ca0b5b50596722f3a1572eb9b8eb520c0f1" })

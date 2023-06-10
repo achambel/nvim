@@ -15,35 +15,35 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
---   פּ ﯟ   some other good icons
+local icons = require("user.icons").lsp
+
 local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
+  Text = icons.text,
+  Method = icons.method,
+  Function = icons.fn,
+  Constructor = icons.constructor,
+  Field = icons.field,
+  Variable = icons.variable,
+  Class = icons.class,
+  Interface = icons.interface,
+  Module = icons.module,
+  Property = icons.property,
+  Unit = icons.unit,
+  Value = icons.value,
+  Enum = icons.enum,
+  Keyword = icons.keyword,
+  Snippet = icons.snippet,
+  Color = icons.color,
+  File = icons.file,
+  Reference = icons.reference,
+  Folder = icons.folder,
+  EnumMember = icons.enum_member,
+  Constant = icons.constant,
+  Struct = icons.struct,
+  Event = icons.event,
+  Operator = icons.operator,
+  TypeParameter = icons.type_parameter
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
   snippet = {
@@ -98,13 +98,14 @@ cmp.setup {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       -- Kind icons
+      local kind_text = vim_item.kind
+
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        luasnip = "[Snippet]",
-        buffer = "[Buffer]",
-        path = "[Path]",
+        nvim_lsp = string.format("[%s %s]", icons.server, kind_text),
+        luasnip = string.format("[%s  %s]", icons.snippet, kind_text),
+        buffer = string.format("[%s  %s]", icons.text, kind_text),
+        path = string.format("[%s %s]", icons.path, kind_text),
       })[entry.source.name]
       local colorizer = require("tailwindcss-colorizer-cmp")
       return colorizer.formatter(entry, vim_item)
