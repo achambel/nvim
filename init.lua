@@ -45,9 +45,9 @@ local opts = {
   },
 }
 
-require("config.options")
-require("config.keymaps")
-require("config.autocmds")
+require("user.config.options")
+require("user.config.keymaps")
+require("user.config.autocmds")
 
 -- It follows the lazy plugin spec
 -- See more on https://github.com/folke/lazy.nvim#-plugin-spec

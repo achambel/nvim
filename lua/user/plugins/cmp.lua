@@ -4,7 +4,7 @@ return {
     commit = "b8c2a62b3bd3827aa059b43be3dd4b5c45037d65",
     event = "InsertEnter",
     config = vim.schedule(function()
-      require("config.cmp")
+      require("user.config.cmp")
     end),
     dependencies = {
       {
