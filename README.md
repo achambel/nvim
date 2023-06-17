@@ -1,4 +1,9 @@
-# Neovim - My customisations
+# Neovim Config - My customisations
+
+![image](https://user-images.githubusercontent.com/3522486/246619040-8c06c774-8d0e-4f2d-a649-97ab708c9b8a.png)
+
+- Theme: [tokyonight-moon](https://github.com/folke/tokyonight.nvim)
+- Font: [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)
 
 This repo should work fine with Neovim 0.9.0, also all packages are pinned so it should remain stable.
 

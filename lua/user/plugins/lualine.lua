@@ -1,5 +1,6 @@
-local icons = require("user.utils").icons
-local lsp = require("user.utils").lsp
+local utils = require("user.utils")
+local icons = utils.icons
+local lsp = utils.lsp
 
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
@@ -27,13 +28,8 @@ local branch = {
 
 local buffers = {
   function()
-    local total = 0
-
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-      if vim.fn.buflisted(buf) == 1 then
-        total = total + 1
-      end
-    end
+    local buffers = utils.get_listed_buffers()
+    local total = #buffers
 
     return total > 1 and total or ""
   end,

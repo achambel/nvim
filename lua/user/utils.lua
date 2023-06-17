@@ -18,6 +18,18 @@ M.get_hex_color = function(group, attr)
   return vim.api.nvim_command_output(cmd)
 end
 
+M.get_listed_buffers = function()
+  local listed = {}
+
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.fn.buflisted(buf) == 1 then
+      table.insert(listed, buf)
+    end
+  end
+
+  return listed
+end
+
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 M.glyphs = {
   file = "",
