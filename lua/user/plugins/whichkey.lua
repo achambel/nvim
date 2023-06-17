@@ -1,8 +1,3 @@
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  return
-end
-
 local setup = {
   window = {
     border = "single", -- none, single, double, shadow
@@ -16,10 +11,9 @@ local opts = {
 local mappings = {
   ["/"] = { "<cmd>norm gcc<cr>", "Comment" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["w"] = { "<cmd>w!<cr>", "Save" },
-  ["q"] = { "<cmd>q!<cr>", "Quit" },
-  ["c"] = { "<cmd>Bdelete!<cr>", "Close Buffer" },
-  ["h"] = { "<cmd>nohlsearch<cr>", "No Highlight" },
+  ["q"] = { "<cmd>q<cr>", "Quit" },
+  ["h"] = { "<cmd>set hls!<cr>", "Toggle Highlight" },
+  ["w"] = { "<cmd>w<cr>", "Save File" },
 
   b = {
     name = "Buffer",
@@ -29,21 +23,12 @@ local mappings = {
     c = { "<cmd>bd<cr>", "Close current buffer" }
   },
 
-  f = {
+  o = {
     name = "Telescope",
-    f = { "<cmd>Telescope find_files hidden=true<cr>", "Find Files" },
+    o = { "<cmd>Telescope find_files find_command=rg,--smart-case,--files<cr>", "Find Files" },
     g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
     h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     v = { "<cmd>Telescope git_files<cr>", "Git Files" }
-  },
-
-  p = {
-    name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
 
   g = {
@@ -111,5 +96,14 @@ local mappings = {
   },
 }
 
-which_key.setup(setup)
-which_key.register(mappings, opts)
+return {
+  "folke/which-key.nvim",
+  commit = "e271c28118998c93a14d189af3395812a1aa646c",
+  event = "VeryLazy",
+  config = vim.schedule(function()
+    local which_key = require("which-key")
+    which_key.setup(setup)
+    which_key.register(mappings, opts)
+  end)
+
+}

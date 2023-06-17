@@ -1,12 +1,5 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-  return
-end
-
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-  return
-end
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -15,7 +8,7 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
-local icons = require("user.icons").lsp
+local icons = require("user.utils").icons.lsp
 
 local kind_icons = {
   Text = icons.text,

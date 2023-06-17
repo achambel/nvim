@@ -1,12 +1,12 @@
 # Neovim - My customisations
 
-This repo should work fine with Neovim 0.7, also all packages are pinned so it should remain stable.
+This repo should work fine with Neovim 0.9.0, also all packages are pinned so it should remain stable.
 
 ## Try out this config
 
-Make sure to remove or move your current `nvim` directory
+Make sure to delete or rename your current `nvim` directory if it exists.
 
-For a clean installation you might want execute the following before the installation.
+For a clean installation you might want to execute the following before the installation.
 
 ```
 rm -rf ~/.config/nvim ~/.local/{share,state}/nvim ~/.cache/nvim
@@ -16,11 +16,18 @@ rm -rf ~/.config/nvim ~/.local/{share,state}/nvim ~/.cache/nvim
 git clone https://github.com/achambel/nvim ~/.config/nvim
 ```
 
-Run `nvim` and wait for the plugins to be installed
+Run `nvim` and wait for the plugins to be installed with Lazy plugin manager.
 
-**NOTE** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim)
+## Treesitter support
+Treesitter support is also "lazy". It will be installed on demand as soon as you open a file. 
+If will detects the filetype and proceed the installation.
 
-## Get healthy
+## Language Server Protocol (LSP)
+Bear in mind that NeoVim has a builtin client only. The lspconfig plugin contains only configuration conveniences.
+Therefore to have lsp support you have either install the server manually and make sure the binary will be in your path
+or choose for a LSP Installer manager such as Mason plugin.
+
+### Get healthy
 
 Open `nvim` and enter the following:
 
@@ -28,7 +35,7 @@ Open `nvim` and enter the following:
 :checkhealth
 ```
 
-You'll probably notice you don't have support for copy/paste also that python and node haven't been setup
+You'll probably notice you don't have support for copy/paste
 
 So let's fix that
 
@@ -46,34 +53,6 @@ First we'll fix copy/paste
 
   ```
   sudo pacman -S xsel
-  ```
-
-Next we need to install python support (node is optional)
-
-- Neovim python support
-
-  ```
-  pip install pynvim
-  ```
-
-- Neovim node support
-
-**NOTE** make sure you have [node](https://nodejs.org/en/) installed, I recommend a node manager like [fnm](https://github.com/Schniz/fnm).
-
-```
-npm i -g neovim
-```
-
-- Prettier support - null-ls will use it to format your html, css, js, ts files
-
-  ```
-  npm i -g prettier
-  ```
-
-- LazyGit support for a lazy git experience
-
-  ```
-  brew install lazygit
   ```
 
 ---
