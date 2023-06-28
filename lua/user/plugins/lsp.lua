@@ -39,4 +39,21 @@ return {
       config_lsp(lspconfig)
     end),
   },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    commit = "bbaf5a96913aa92281f154b08732be2f57021c45",
+    event = { "BufReadPost", "BufNewFile" },
+    requires = { "nvim-lua/plenary.nvim" },
+    config = vim.schedule(function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.diagnostics.credo.with({
+            filetypes = { "elixir" }
+          }),
+          null_ls.builtins.code_actions.gitsigns
+        }
+      })
+    end)
+  }
 }

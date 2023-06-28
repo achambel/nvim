@@ -1,3 +1,4 @@
 return {
-  cmd = { "elixir-ls" }
+  cmd = { "elixir-ls" },
+  fetchDeps = false,
 }

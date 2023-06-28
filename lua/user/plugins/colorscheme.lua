@@ -8,5 +8,14 @@ return {
       vim.cmd("colorscheme tokyonight-moon")
     end
   },
-
+  {
+    "brenoprata10/nvim-highlight-colors",
+    commit = "8d7e7fe540b404ec06a248d6e5797eaf3362420c",
+    event = { "BufReadPost", "BufNewFile" },
+    config = vim.schedule(function()
+      require("nvim-highlight-colors").setup {
+        enable_tailwind = true
+      }
+    end)
+  },
 }
