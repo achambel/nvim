@@ -5,7 +5,8 @@ local servers = {
   "tsserver",
   "jsonls",
   "lua_ls",
-  "elixirls"
+  "elixirls",
+  "emmet_ls",
 }
 
 local function config_lsp(lspconfig)
