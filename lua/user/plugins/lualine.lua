@@ -122,7 +122,7 @@ local options = {
 
 return {
   "nvim-lualine/lualine.nvim",
-  commit = "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9",
+  commit = "544dd1583f9bb27b393f598475c89809c4d5e86b",
   event = "BufReadPost",
   config = vim.schedule(function()
     require("lualine").setup(options)

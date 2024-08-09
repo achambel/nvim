@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    commit = "b8c2a62b3bd3827aa059b43be3dd4b5c45037d65",
+    commit = "ae644feb7b67bf1ce4260c231d1d4300b19c6f30",
     event = "InsertEnter",
     config = vim.schedule(function()
       require("user.config.cmp")
@@ -17,7 +17,7 @@ return {
       },
       {
         "hrsh7th/cmp-nvim-lsp",
-        commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
+        commit = "39e2eda76828d88b773cc27a3f61d2ad782c922d",
       },
       {
         "hrsh7th/cmp-nvim-lua",
@@ -25,11 +25,11 @@ return {
       },
       {
         "saadparwaiz1/cmp_luasnip",
-        commit = "18095520391186d634a0045dacaa346291096566",
+        commit = "05a9ab28b53f71d1aece421ef32fee2cb857a843",
       },
       {
         "roobert/tailwindcss-colorizer-cmp.nvim",
-        commit = "65565c62963579897d28390dbd1ba8fb15ba545f"
+        commit = "3d3cd95e4a4135c250faf83dd5ed61b8e5502b86"
       }
     }
   },
@@ -37,12 +37,12 @@ return {
   -- snippets
   {
     "L3MON4D3/LuaSnip",
-    commit = "fcdaa4313305fe20d928551134c1ec2266e7af2a",
+    commit = "b84eeb3641b08324287587b426ec974b888390d9",
     event = "VeryLazy"
   },
   {
     "rafamadriz/friendly-snippets",
-    commit = "49ca2a0e0e26427b550b1f64272d7fe7e4d7d51b",
+    commit = "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4",
     event = "VeryLazy"
   }
 }

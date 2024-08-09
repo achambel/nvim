@@ -1,109 +1,91 @@
-local setup = {
-  window = {
-    border = "single", -- none, single, double, shadow
-  },
-}
-
-local opts = {
-  prefix = "<leader>",
-}
-
-local mappings = {
-  ["/"] = { "<cmd>norm gcc<cr>", "Comment" },
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["q"] = { "<cmd>q<cr>", "Quit" },
-  ["h"] = { "<cmd>set hls!<cr>", "Toggle Highlight" },
-  ["w"] = { "<cmd>w<cr>", "Save File" },
-
-  b = {
-    name = "Buffer",
-    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    o = { "<cmd>%bdelete|edit #|normal `\"<cr>", "Close Others buffers" },
-    a = { "<cmd>%bdelete<cr>", "Close All buffers" },
-    c = { "<cmd>bd<cr>", "Close current buffer" }
-  },
-
-  o = {
-    name = "Telescope",
-    o = { "<cmd>Telescope find_files find_command=rg,--smart-case,--files<cr>", "Find Files" },
-    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-    h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-    v = { "<cmd>Telescope git_files<cr>", "Git Files" }
-  },
-
-  g = {
-    name = "Git",
-    j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-    k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-    l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-    p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-    r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-    R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    u = {
-      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-      "Undo Stage Hunk",
-    },
-    o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = {
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      "Diff",
-    },
-  },
-
-  l = {
-    name = "LSP",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    d = {
-      "<cmd>Telescope diagnostics bufnr=0<cr>",
-      "Document Diagnostics",
-    },
-    w = {
-      "<cmd>Telescope diagnostics<cr>",
-      "Workspace Diagnostics",
-    },
-    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-    i = { "<cmd>LspInfo<cr>", "Info" },
-    I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-    j = {
-      "<cmd>lua vim.diagnostic.goto_next()<CR>",
-      "Next Diagnostic",
-    },
-    k = {
-      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-      "Prev Diagnostic",
-    },
-    q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Loc List" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      "Workspace Symbols",
-    },
-  },
-  s = {
-    name = "Search",
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-    h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-    R = { "<cmd>Telescope registers<cr>", "Registers" },
-    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-    C = { "<cmd>Telescope commands<cr>", "Commands" },
-  },
-}
-
 return {
   "folke/which-key.nvim",
-  commit = "e271c28118998c93a14d189af3395812a1aa646c",
+  commit = "6c1584eb76b55629702716995cca4ae2798a9cca",
   event = "VeryLazy",
+  opts = {
+    preset = "helix",
+    win = {
+      border = 'single'
+    }
+  },
   config = vim.schedule(function()
-    local which_key = require("which-key")
-    which_key.setup(setup)
-    which_key.register(mappings, opts)
-  end)
+    local wk = require("which-key")
+    wk.add({
+      {
+        "<leader>?",
+        function()
+          wk.show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+        icon = "󰋗 "
+      },
+      { "<leader>/", "<cmd>norm gcc<cr>", desc = "comment", icon = "󰅺 " },
+      { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "explorer", icon = "󰝰 " },
+      { "<leader>q", "<cmd>q<cr>", desc = "quit" },
+      { "<leader>h", "<cmd>set hls!<cr>", desc = "toggle highlight" },
+      { "<leader>w", "<cmd>w<cr>", desc = "save file", icon = "󰆓 " },
 
+      { "<leader>b", group = "buffers", icon = "󱔗 " },
+      { "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "filter" },
+      {
+        "<leader>bb",
+        expand = function()
+          return require("which-key.extras").expand.buf()
+        end
+        ,
+        desc = "pick"
+      },
+      { "<leader>bo", "<cmd>%bdelete|edit #|normal `\"<cr>", desc = "close others" },
+      { "<leader>ba", "<cmd>%bdelete<cr>", desc = "close all" },
+      { "<leader>bc", "<cmd>bd<cr>", desc = "close current" },
+
+      { "<leader>o", group = "telescope" },
+      { "<leader>oo", "<cmd>Telescope find_files find_command=rg,--smart-case,--files<cr>", desc = "find files" },
+      { "<leader>og", "<cmd>Telescope live_grep<cr>", desc = "live grep", icon = "󰈲 " },
+      { "<leader>oh", "<cmd>Telescope help_tags<cr>", desc = "help tags" },
+      { "<leader>ov", "<cmd>Telescope git_files<cr>", desc = "git files" },
+
+
+      { "<leader>g", group = "git" },
+      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "next hunk" },
+      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "prev hunk" },
+      { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "blame" },
+      { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "preview hunk" },
+      { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "reset hunk" },
+      { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "reset buffer" },
+      { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "stage hunk" },
+      {
+        "<leader>gu",
+        "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+        desc = "Undo Stage Hunk",
+      },
+      { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "open changed file" },
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "checkout branch" },
+      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "checkout commit" },
+      { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "diff", },
+
+      { "<leader>l", group = "LSP", icon = " " },
+      { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "document diagnostics" },
+      { "<leader>lw", "<cmd>Telescope diagnostics<cr>", desc = "workspace diagnostics", },
+      { "<leader>lf", "<cmd>lua vim.lsp.buf.format{async=true}<cr>", desc = "format" },
+      { "<leader>li", "<cmd>LspInfo<cr>", desc = "info" },
+      { "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "installer info" },
+      { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "next diagnostic", },
+      { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "prev diagnostic", },
+      { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "loc list diagnostic" },
+      { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "rename" },
+      { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "document symbols" },
+      { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "workspace symbols", },
+
+      { "<leader>s", group = "search" },
+      { "<leader>sb", "<cmd>Telescope git_branches<cr>", desc = "checkout branch" },
+      { "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "colorscheme" },
+      { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "find help" },
+      { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "man pages" },
+      { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "open recent file" },
+      { "<leader>sR", "<cmd>Telescope registers<cr>", desc = "registers" },
+      { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "keymaps" },
+      { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "commands" },
+    })
+  end),
 }

@@ -1,6 +1,6 @@
 return {
   "windwp/nvim-autopairs",
-  commit = "7747bbae60074acf0b9e3a4c13950be7a2dff444",
+  commit = "4a39f2dcbe1967ddc3a0f76f863540dd3aa7871a",
   event = "InsertEnter",
   config = vim.schedule(function()
     require("nvim-autopairs").setup()

@@ -1,7 +1,7 @@
 return {
   "numToStr/Comment.nvim",
-  commit = "e1fe53117aab24c378d5e6deaad786789c360123",
-  dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", commit = "0bf8fbc2ca8f8cdb6efbd0a9e32740d7a991e4c3" },
+  commit = "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
+  dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", commit = "6b5f95aa4d24f2c629a74f2c935c702b08dbde62" },
   event = "BufReadPost",
   config = vim.schedule(function()
     local comment = require("Comment")

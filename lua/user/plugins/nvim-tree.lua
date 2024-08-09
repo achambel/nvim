@@ -46,7 +46,7 @@ local opts = {
 return {
   {
     "nvim-tree/nvim-tree.lua",
-    commit = "b1e074d2b52d45c8327b5b43a498b3d7e6c93b97",
+    commit = "48d0e82f9434691cc50d970898142a8c084a49d6",
     cmd = "NvimTreeToggle",
     opts = opts,
     config = vim.schedule(subscribe)

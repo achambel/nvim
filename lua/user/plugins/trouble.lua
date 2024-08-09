@@ -11,7 +11,7 @@ end
 
 return {
   "folke/trouble.nvim",
-  commit = "2af0dd9767526410c88c628f1cbfcb6cf22dd683",
+  commit = "6efc446226679fda0547c0fd6a7892fd5f5b15d8",
   event = "VeryLazy",
   opts = {
     use_diagnostic_signs = true

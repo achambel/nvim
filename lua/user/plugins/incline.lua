@@ -21,7 +21,7 @@ local opts = {
     local fancy_filename = vim.split(filename, "/")
 
     local buffer = {
-      { ft_icon,                               guifg = ft_color }, { " " },
+      { ft_icon, guifg = ft_color }, { " " },
       { table.concat(fancy_filename, "  "), gui = modified and 'bold,italic' or 'bold' },
       -- status
       {
@@ -37,7 +37,7 @@ local opts = {
 
 return {
   "b0o/incline.nvim",
-  commit = "71a03756a5f750c79a2889a80fcd8bbff7083690",
+  commit = "16fc9c073e3ea4175b66ad94375df6d73fc114c0",
   event = "BufReadPre",
   config = vim.schedule_wrap(function()
     require('incline').setup(opts)

@@ -16,7 +16,7 @@ vim.cmd("autocmd FileType * :lua ensure_treesitter_language_installed()")
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    commit = "150be01d47579ba70137813348a2f0a5be7a7866",
+    commit = "3d1f5e7df8d9981ec0bcf4aa635c0cc0a7ee89d9",
     event = { "BufReadPost", "BufNewFile" },
     lazy = false,
     init = vim.schedule_wrap(function()
@@ -25,7 +25,7 @@ return {
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-context",
-        commit = "cf618047619def57127fdd983f73e5bda373ccc0",
+        commit = "0f3332788e0bd37716fbd25f39120dcfd557c90f",
       }
     },
     opts = {

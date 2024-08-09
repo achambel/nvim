@@ -1,16 +1,16 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    commit = "37c526857807e9550bdc8649700d4ceb47750ef2",
+    commit = "3b1600d0fd5172ad9fae00987362ca0ef3d8895d",
     event = "VeryLazy",
     dependencies = {
       {
         "nvim-lua/plenary.nvim",
-        commit = "36aaceb6e93addd20b1b18f94d86aecc552f30c4"
+        commit = "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683"
       },
       {
-        'nvim-telescope/telescope-ui-select.nvim',
-        commit = "62ea5e58c7bbe191297b983a9e7e89420f581369",
+        "nvim-telescope/telescope-ui-select.nvim",
+        commit = "6e51d7da30bd139a6950adf2a47fda6df9fa06d2",
       }
     },
     opts = {
@@ -20,11 +20,11 @@ return {
       telescope.setup {
         defaults = {
           previewer = true,
-          path_display = { "smart" },
+          path_display = { "shorten" },
           layout_config = {
             horizontal = {
               prompt_position = "top",
-              preview_width = 0.7,
+              preview_width = 0.6,
             },
             vertical = {
               prompt_position = "top",
