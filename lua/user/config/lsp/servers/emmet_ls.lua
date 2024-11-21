@@ -5,7 +5,8 @@ return {
     "javascript",
     "javascriptreact",
     "typescriptreact",
-    "heex"
+    "heex",
+    "elixir"
   },
   init_options = {
     html = {

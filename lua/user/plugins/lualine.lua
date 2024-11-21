@@ -76,46 +76,8 @@ local options = {
     lualine_z = {}
   },
   tabline = {},
-  winbar = {
-    --[[ lualine_a = { buffers }, ]]
-    --[[ lualine_b = {}, ]]
-    --[[ lualine_c = {}, ]]
-    --[[ lualine_x = { icon }, ]]
-    --[[ lualine_y = { ]]
-    --[[   filename, ]]
-    --[[   { ]]
-    --[[     'filename', ]]
-    --[[     newfile_status = true, ]]
-    --[[     symbols = { ]]
-    --[[       modified = icons.glyphs.dot .. ' ', ]]
-    --[[       readonly = icons.glyphs.locker .. " [readonly]", ]]
-    --[[       unnamed = icons.glyphs.question .. ' [No Name]', ]]
-    --[[       newfile = icons.glyphs.file .. " [New File]" ]]
-    --[[     }, ]]
-    --[[     separator = { left = " ", right = "" }, ]]
-    --[[     fmt = function(str) ]]
-    --[[       -- keeps only the symbol. Eg: 'file.ext [+]' becomes '[+]' ]]
-    --[[       return str:gsub(vim.fn.expand("%:t"), ""):match '^%s*(.*%S)' or '' ]]
-    --[[     end, ]]
-    --[[     color = function() ]]
-    --[[       if vim.bo.modified then ]]
-    --[[         return 'BufferAlternateTarget' ]]
-    --[[       elseif vim.bo.readonly then ]]
-    --[[         return 'BufferAlternateINFO' ]]
-    --[[       elseif vim.bo.buftype == '' then ]]
-    --[[         return 'BufferAlternateHINT' ]]
-    --[[       end ]]
-    --[[     end ]]
-    --[[   } ]]
-    --[[ }, ]]
-    --[[ lualine_z = {}, ]]
-  },
-  inactive_winbar = {
-    --[[ lualine_a = {}, ]]
-    --[[ lualine_x = { icon }, ]]
-    --[[ lualine_y = { filename, }, ]]
-    --[[]]
-  },
+  winbar = {},
+  inactive_winbar = {},
   extensions = {},
 
 }

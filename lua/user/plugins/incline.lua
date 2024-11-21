@@ -1,5 +1,4 @@
 local icons = require("user.utils").glyphs
-local get_hex_color = require("user.utils").get_hex_color
 
 local opts = {
   window = {
@@ -16,8 +15,7 @@ local opts = {
     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':.')
     local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
 
-    local modified = vim.api.nvim_buf_get_option(props.buf, "modified")
-
+    local modified = vim.api.nvim_get_option_value("modified", { buf = props.buf })
     local fancy_filename = vim.split(filename, "/")
 
     local buffer = {
@@ -26,7 +24,6 @@ local opts = {
       -- status
       {
         modified and " " .. icons.dot or " ",
-        guifg = get_hex_color("BufferCurrentTarget", "fg#"),
         gui = 'bold'
       }
     }

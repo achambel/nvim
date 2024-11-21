@@ -1,11 +1,11 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    commit = "b0e7c7382a7e8f6456f2a95655983993ffda745e",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      vim.cmd("colorscheme tokyonight-moon")
+      vim.cmd("colorscheme catppuccin-mocha")
     end
   },
   {

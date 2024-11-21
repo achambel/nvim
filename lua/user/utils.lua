@@ -7,17 +7,6 @@ M.keymap = function(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 
-
--- Get a hex color from a given group.
--- Example: get_hex_color("BufferCurrentTarget", "fg#") will return #ff757f
----@param group string The highlight group name
----@param attr string The attribute of the given group name
----@return string
-M.get_hex_color = function(group, attr)
-  local cmd = string.format('echo synIDattr(synIDtrans(hlID("%s")), "%s")', group, attr)
-  return vim.api.nvim_command_output(cmd)
-end
-
 M.get_listed_buffers = function()
   local listed = {}
 
@@ -135,8 +124,8 @@ M.lsp = {
   -- Lsp server name .
   function()
     local message = 'No Active LSP'
-    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-    local clients = vim.lsp.get_active_clients()
+    local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
+    local clients = vim.lsp.get_clients()
     if next(clients) == nil then
       return message
     end
