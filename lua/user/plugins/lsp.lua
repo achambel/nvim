@@ -8,7 +8,8 @@ local servers = {
   "elixirls",
   "emmet_ls",
   "rust_analyzer",
-  "csharp_ls"
+  "csharp_ls",
+  "bashls"
 }
 
 local function config_lsp(lspconfig)
