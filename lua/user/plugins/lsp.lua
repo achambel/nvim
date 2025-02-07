@@ -47,7 +47,7 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     commit = "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7",
     event = { "BufReadPost", "BufNewFile" },
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = vim.schedule(function()
       local null_ls = require("null-ls")
       null_ls.setup({

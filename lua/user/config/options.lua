@@ -43,6 +43,7 @@ local options = {
   foldlevelstart = 99,
   path = "**/",
   laststatus = 3,
+  shada = NONE, -- do not read/write shared data to marks and registers between sessions.
 }
 
 vim.opt.shortmess:append("I")

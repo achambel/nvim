@@ -18,8 +18,7 @@ return {
       require('illuminate').configure({
         under_cursor = false,
         filetypes_denylist = {
-          "TelescopePrompt",
-          "NvimTree"
+          "Oil"
         }
       })
     end)

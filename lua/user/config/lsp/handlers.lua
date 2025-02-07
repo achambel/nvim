@@ -96,7 +96,7 @@ M.setup = function()
     width = 60,
   })
 
-  vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_references
+  vim.lsp.handlers["textDocument/references"] = require("fzf-lua").lsp_references
 end
 
 local function lsp_highlight_document(client)

@@ -44,7 +44,7 @@ local options = {
     section_separators = { left = '', right = '' },
     always_divide_middle = true,
     globalstatus = false,
-    disabled_filetypes = { "NvimTree" }
+    disabled_filetypes = { "oil" }
   },
   sections = {
     lualine_a = { mode },
